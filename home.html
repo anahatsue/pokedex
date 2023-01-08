@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>pokedex</title>
+        <link rel="icon" type="image/jpg" href="images/pokeball.png">
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+        <script src="script.js" defer></script>
+    </head>
+
+    <body>
+        <header>
+            <section class="header">
+                <div class="logo">
+                    <a href="home.html">
+                        <img class="image-home" src="images/pokeball64.png">
+                    </a>
+                </div>
+                <div class="strip-red"></div>
+                <div class="strip-black"></div>
+                <div class="strip-white"></div>
+            </section>             
+        </header>
+
+        <main>
+            <section>
+                <form class="search">
+                    <div class="div-search-bar">
+                        <input class="search-bar" type="search" placeholder="Pesquisar pokemon" required autofocus>
+                    </div>
+                    <div class="div-search-button">
+                        <button class="search-button" type="submit" onclick=cardTab()>Buscar</button>
+                    </div>
+                </form>
+            </section>
+
+            <section>
+                <table class="table-pokemon">
+                    <thead>
+                        <tr class="table-header">
+                            <th>Ícone</th>
+                            <th >Nº Pokedex</th>
+                            <th>Nome</th>
+                        </tr>
+                    </thead>    
+                    <tbody>
+                        <tr>
+                            <td class="img-pokemon"></td>
+                            <td class="number-pokemon"></td>
+                            <td class="name-pokemon"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+       
+        <footer>
+            <div class="footer-container">
+                <div class="social-buttons">
+                    <div class="button-linkedin">
+                        <a href="https://www.linkedin.com/in/anahatsue/"><img class="image-linkedin" src="images/linkedin.png">
+                        </a>
+                    </div>
+                    <div class="button-github">
+                        <a href="https://github.com/anahatsue"><img class="image-github" src="images/github.png">
+                        </a>
+                    </div>
+                </div>
+                <div class="sign">
+                <p class="copyright">&copy; 2023 Ana Hatsue </p>
+                </div>
+            </div>
+        </footer>
+
+    </body>
+
+</html>
