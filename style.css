@@ -48,7 +48,7 @@ body {
 }
 
 .search {
-    margin-top: 25px;
+    margin: 25px 0px 50px 0px;
     text-align: center;
 }
 
@@ -86,22 +86,62 @@ body {
     border: none;
 }
 
-.table-pokemon {
-    margin: 100px 0px 50px 50%;
-    transform: translate(-48%, 0);
-    font-family: 'Slabo 27px', serif;
+.pokemons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 25px 25px;
+    width: auto;
+    background-color: rgb(255, 255, 0);
+    border: 5px solid rgb(55, 96, 167);
+    border-radius: 10px;
 }
 
-.table-header {
-    background: rgb(197, 197, 197);
-    color: rgb(0, 0, 0);
+.home-poke-card {
+    height: max-content;
+    margin: 1.5% 1.5%;
+    width: 100%;
+    max-width: 150px;
+    background-color: rgb(55, 96, 167);
+    border-radius: 10px;
+    box-shadow: 3px 3px 0 black;
+    color: white;
+    flex-direction: column;
+    position: relative;
+}
+
+.home-poke-card-img {
+    display: flex;
+    justify-content: center;
+}
+
+.home-poke-card-img img {
+    width: 120%;
+}
+
+.home-poke-card-data {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-bottom: 8%;
+    text-shadow: 2px 2px 0 black;
+}
+
+.home-poke-card-name {
     font-weight: bold;
+    font-size: 0.9em;
+}
+.home-poke-card-name::first-letter {
+    text-transform:uppercase;
 }
 
-td, th {
-    border: 1px solid black;
-    padding: 8px 15px;
-    text-align: center;
+.home-poke-card-id {
+    text-shadow: 2px 2px 0 black;
+    position: absolute;
+    top: 5%;
+    right: 5%;
 }
 
 /*MAIN CARD*/

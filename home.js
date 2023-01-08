@@ -1,30 +1,61 @@
-var allPokemon = [];
-const pokemonsDiv = document.querySelector(".pokemons");
-const form = document.querySelector(".search");
-const input = document.querySelector(".search-bar");
+var arrayObjects = [];
+var pokemonCard = document.querySelector(".pokemons");
+var form = document.querySelector(".search");
+var input = document.querySelector(".search-bar");
 
-const fetchAllPokemons = async () => {
-    const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=2000`);
+async function fetchPokemonById(id) {
+    const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
 
-    if(APIResponse.status == 200) {
-        const data = await APIResponse.json();
-        return data;
+    const response = await APIResponse.json();
+    return response;
+}
+
+async function fetchAllPokemons() {
+    var numberPokemons = 152;
+
+    for (let index = 1; index <= numberPokemons; index++) {
+        fetchPokemonById(index).then( (dataPromise) => {
+            const pokemon = new Object();
+            pokemon.name = dataPromise.name;
+            pokemon.id = dataPromise.id;
+            pokemon.img = dataPromise.sprites.front_default;
+            arrayObjects.push(pokemon);
+        })
     }
 }
 
-fetchAllPokemons().then((fetchPokemon) => {
-    console.log(fetchPokemon);
-    allPokemon = fetchPokemon.results;
-})
+function renderPokemonHome() { 
 
-const renderPokemonHome = () => {
-    pokemonsDiv.innerHTML = "";
+    pokemonCard.innerHTML = "";
 
-    allPokemon.forEach(element => {
+    arrayObjects.forEach(element => {
         if(element.name.includes(input.value.toLowerCase()) && input.value.length > 1) {
-            pokemonsDiv.innerHTML += "<div>" + element.name + "</div>";
+            renderPokemonCard(element)
         }
     });
+}
+
+function renderPokemonCard(element) {
+    pokemonCard.innerHTML += 
+        `<div class='home-poke-card'> 
+            <div class='home-poke-card-id'> 
+                    ${element.id} 
+                </div> 
+            <div class='home-poke-card-img'> 
+                <img src='${element.img}'>
+            </div>
+            <div class='home-poke-card-data'>
+                <div class='home-poke-card-name'> 
+                ${element.name} 
+                </div>
+                
+            </div> 
+            
+        <div>`;
+}
+
+window.onload = () => {
+    fetchAllPokemons();
 }
 
 form.addEventListener("submit", (event) => {
@@ -33,5 +64,8 @@ form.addEventListener("submit", (event) => {
 });
 
 input.addEventListener("input", (event) => {
-   renderPokemonHome();
-});
+    renderPokemonHome();
+ });
+
+
+
