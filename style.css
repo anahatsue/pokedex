@@ -43,8 +43,18 @@
 }
 
 /* MAIN*/
+html, body {
+    height: 100%;
+    min-height: 100%;
+}
+
 body {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
 }
 
 .search {
@@ -87,7 +97,7 @@ body {
 }
 
 .pokemons {
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     justify-content: space-around;
     margin: 25px 25px;
@@ -108,6 +118,7 @@ body {
     color: white;
     flex-direction: column;
     position: relative;
+    cursor: pointer;
 }
 
 .home-poke-card-img {
@@ -144,6 +155,42 @@ body {
     right: 5%;
 }
 
+.welcome-container {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 25px 25px;
+    width: auto;
+    background-color: rgb(55, 96, 167);
+    border-radius: 10px;
+}
+
+#welcome-message {
+    text-align: center;
+    padding: 15px;
+    font-size: 24px;
+    font-weight: bolder;
+    color: white;
+    text-shadow: 2px 2px 0 black;
+}
+
+#welcome-img {
+    display: flex;
+    justify-content: center;
+}
+
+.pokemon-nfound{
+    height: 80px;
+    margin: 5% 5%;
+    width: auto;
+    background-color: rgb(55, 96, 167);
+    border-radius: 10px;
+    box-shadow: 3px 3px 0 black;
+    color: white;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
 /*MAIN CARD*/
 .card {
     margin: 5% 2%;
@@ -165,7 +212,7 @@ body {
     color: white;
 }
 
-.card-box-nfound{
+.card-box-nfound {
     height: 80px;
     margin: 5% 5%;
     width: 100%;
@@ -220,6 +267,12 @@ body {
     border-radius: 15px;
     box-shadow: 3px 3px 0 black;
     padding: 10px;
+    color:black;
+    text-align: center;
+}
+
+.one-type-pokemon::first-letter {
+    text-transform: uppercase;
 }
 
 .stats-pokemon {
@@ -231,13 +284,31 @@ body {
     margin-top: 30px;
 }
 
+#btn-previous, #btn-next {
+    border: none;
+    border-radius: 10px;
+    position: relative;
+    width: 5%;
+    background-color: rgb(255, 255, 0);
+    color: rgb(55, 96, 167);
+    font-size: 30px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+#btn-previous {
+    padding-left: 2%;
+}
+#btn-next {
+    padding-right: 2%;
+}
+
 
 /* FOOTER */
 .footer-container{
-    height: 60px;
+    min-height: 60px;
     background: rgb(255, 0, 77);
     border-top: 5px solid black;
-    
 }
 
 .social-buttons {
@@ -250,7 +321,6 @@ body {
 .image-linkedin, .image-github {
     width: 20px;
     margin: 50% 0;
-    
 }
 
 .social-buttons div {
