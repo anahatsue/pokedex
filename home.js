@@ -1,21 +1,27 @@
 var arrayObjects = [];
-var pokemonCard = document.querySelector(".pokemons");
+const displayCard = document.querySelector(".pokemons");
+const displayWelcome = document.querySelector(".welcome-container");
+const displayNotFound = document.querySelector(".pokemon-nfound");
 
-var form = document.querySelector(".search");
-var input = document.querySelector(".search-bar");
+const form = document.querySelector(".search");
+const input = document.querySelector(".search-bar");
 
-var displayCard = pokemonCard;
-var displayWelcome = document.querySelector(".welcome-container");
-var displayNotFound = document.querySelector(".pokemon-nfound");
-
-async function fetchPokemonById(id) {
+/**
+ * Function to get Pokemon data from API by id.
+ * @param {number} id - Pokemon Id number.
+ * @returns A json Object containing Pokemon data.
+ */
+const fetchPokemonById = async (id) => {
     const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
 
     const response = await APIResponse.json();
     return response;
 }
 
-async function fetchAllPokemons() {
+/**
+ * Function to add Objects Pokemon in Array.
+ */
+const fetchAllPokemons = async () => {
     var numberPokemons = 905;
 
     for (let index = 1; index <= numberPokemons; index++) {
@@ -29,9 +35,11 @@ async function fetchAllPokemons() {
     }
 }
 
-function renderPokemonHome() { 
-
-    pokemonCard.innerHTML = "";
+/**
+ * Function to filter Pokemons by name while the user is typing. Will also call the displayControl function.
+ */
+const filterPokemonByName = () => {
+    displayCard.innerHTML = "";
 
     var findAny = false;
 
@@ -43,17 +51,20 @@ function renderPokemonHome() {
     });
 
     displaysControl(findAny);
-    
 }
 
-function displaysControl(findAny) {
+/**
+ * Will change the display from a welcome message, to a pokemon preview card or a Pokemon not found message.
+ * @param {boolean} findAny - The param represents the results from the filter function.
+ */
+const displaysControl = (findAny) => {
     if(findAny) {
         displayCard.style.display = "flex";
         displayNotFound.style.display = "none";
         displayWelcome.style.display = "none";
     } else {
         displayCard.style.display = "none";
-        if(input.value.length > 2) {
+        if(input.value.length > 1) {
             displayNotFound.style.display = "flex";
             displayWelcome.style.display = "none";
         } else {
@@ -63,42 +74,49 @@ function displaysControl(findAny) {
     } 
 }
 
-function renderPokemonCard(element) {
-    pokemonCard.innerHTML += 
-        `<div class='home-poke-card' onclick='clickPokemon(${element.id})'> 
-            <div class='home-poke-card-id'> 
-                    ${element.id} 
-                </div> 
-            <div class='home-poke-card-img'> 
-                <img src='${element.img}'>
-            </div>
-            <div class='home-poke-card-data'>
-                <div class='home-poke-card-name'> 
-                    ${element.name} 
-                </div>
-                
+/**
+ * Function to render a preview card from the searched Pokemon.
+ * @param {string} element - A pokemon in the ArrayObjects. 
+ */
+const renderPokemonCard = (element) => {
+    displayCard.innerHTML += 
+    `<div class='home-poke-card' onclick='clickPokemon(${element.id})'> 
+        <div class='home-poke-card-id'> 
+                ${element.id} 
             </div> 
+        <div class='home-poke-card-img'> 
+            <img src='${element.img}'>
+        </div>
+        <div class='home-poke-card-data'>
+            <div class='home-poke-card-name'> 
+                ${element.name} 
+            </div>
             
-        <div>`;
+        </div> 
+        
+    <div>`;
 }
 
-function clickPokemon(pokemonId){
+/**
+ * Function to storage the id from the clicked card preview. Will also open the card page based on this number and its id pokemon correspondent.
+ * @param {number} pokemonId -  A number that will be used to get the pokemon id.
+ */
+const clickPokemon = (pokemonId) => {
     localStorage.setItem("pokemonId", pokemonId);
     window.open("card.html","_self");
 }
 
+/**
+ * An event to call the fetchAllPokemons function as soon as the page is loaded.
+ */
 window.onload = () => {
     fetchAllPokemons();
 }
 
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    renderPokemonHome();
-});
-
+/**
+ * An event listener to wait for the user to start typing. Will execute the filter function.
+ */
 input.addEventListener("input", (event) => {
-    renderPokemonHome();
+    filterPokemonByName();
  });
-
-
 
