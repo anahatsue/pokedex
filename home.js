@@ -68,7 +68,7 @@ const displaysControl = (findAny) => {
             displayNotFound.style.display = "flex";
             displayWelcome.style.display = "none";
         } else {
-            displayWelcome.style.display = "flex";
+            displayWelcome.style.display = "block";
             displayNotFound.style.display = "none";
         }
     } 
