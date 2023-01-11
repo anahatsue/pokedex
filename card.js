@@ -34,8 +34,6 @@ const types = {
     dark: {color: "#754", translate: "noturno"}
 };
 
-// Para buscar os dados da API
-
 /**
  * Function to get the data from the API.
  * @param {string | number} pokemon  - Will search the API by the Pokemon's name or id.
